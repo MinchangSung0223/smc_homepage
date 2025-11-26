@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minchang's Academic Page</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- KaTeX & Marked -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="profile-container">
+            <!-- Placeholder for profile image -->
+            <div class="profile-img"
+                style="background: #ccc; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: #fff;">
+                S</div>
+            <h1>Minchang Sung</h1>
+            <p class="bio">Robotics Engineer<br>Researcher</p>
+        </div>
+
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#" id="nav-about" class="active">About</a></li>
+                <li><a href="#" id="nav-blog">Blog</a></li>
+                <li><a href="#" id="nav-portfolio">Portfolio</a></li>
+                <li><a href="#" id="nav-cv">CV</a></li>
+            </ul>
+        </nav>
+
+        <div class="social-links">
+            <a href="#">GitHub</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">Email</a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- About Section -->
+        <section id="section-about">
+            <h1>About Me</h1>
+            <p>Welcome to my academic homepage. I am a Robotics Engineer interested in Robot Control Theory, Dynamics,
+                and
+                Lie group.</p>
+            <p>I document my learning and research in the <a href="#"
+                    onclick="document.getElementById('nav-blog').click()">Blog</a> section.</p>
+
+            <h2>Research Interests</h2>
+            <ul>
+                <li>Robot Control</li>
+            </ul>
+        </section>
+
+        <!-- Blog Section (Hidden by default) -->
+        <section id="section-blog" style="display: none;">
+            <div
+                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; border-bottom: 1px solid #eee; padding-bottom: 1rem;">
+                <h1 style="border-bottom: none; margin-bottom: 0;">Blog</h1>
+                <button id="writeBtn" class="btn btn-primary">New Post</button>
+            </div>
+            <div id="blog-list">
+                <!-- Posts will be loaded here -->
+            </div>
+        </section>
+
+        <!-- Portfolio Section (Hidden by default) -->
+        <section id="section-portfolio" style="display: none;">
+            <h1>Portfolio</h1>
+            <p>Coming soon...</p>
+        </section>
+
+        <!-- Detail View (Hidden by default) -->
+        <section id="section-detail" style="display: none;">
+            <button id="backBtn" class="btn" style="margin-bottom: 1rem;">&larr; Back</button>
+            <div class="admin-controls" style="float: right;">
+                <button id="editPostBtn" class="btn">Edit</button>
+                <button id="deletePostBtn" class="btn" style="color: #dc2626; border-color: #dc2626;">Delete</button>
+            </div>
+            <article id="postContent" class="markdown-body">
+                <!-- Content rendered here -->
+            </article>
+        </section>
+
+        <!-- Write Section (Inline Editor) -->
+        <section id="section-write" style="display: none;">
+            <h1 id="writeTitle">New Post</h1>
+            <form id="noteForm">
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" id="noteTitle" required>
+                </div>
+                <div class="form-group">
+                    <label>Tag</label>
+                    <input type="text" id="noteTag" required>
+                </div>
+                <div class="form-group">
+                    <label>Summary</label>
+                    <input type="text" id="noteSummary">
+                </div>
+                <div class="form-group">
+                    <label>Content (Markdown)</label>
+                    <textarea id="noteContent" rows="20" required style="font-family: monospace;"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="notePassword" required placeholder="admin123">
+                </div>
+                <div style="margin-top: 2rem;">
+                    <button type="submit" class="btn btn-primary">Save Post</button>
+                    <button type="button" id="cancelWriteBtn" class="btn" style="margin-left: 1rem;">Cancel</button>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Delete Modal -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content" style="max-width: 400px;">
+            <span class="close-modal" id="closeDeleteModal">&times;</span>
+            <h2>Delete Post</h2>
+            <p>Are you sure you want to delete this post?</p>
+            <form id="deleteForm">
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="deletePassword" required placeholder="admin123">
+                </div>
+                <button type="submit" class="btn"
+                    style="background-color: #dc2626; color: white; width: 100%;">Delete</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js?v=3"></script>
+</body>
+
+</html>

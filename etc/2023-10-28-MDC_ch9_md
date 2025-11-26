@@ -1,0 +1,101 @@
+---
+title: "First-order differentials and Jacobian matrices"
+tags:
+  - Blog
+  - MathJax
+  - Jekyll
+  - LaTeX
+  - table
+  - cell
+use_math: true
+Shell:      console, shell
+sitemap :
+  changefreq : daily
+  priority : 1.0
+---
+
+# Introduction
+
+어떤 미분가능한 vector function $f:\mathbb{R}^{n} \rightarrow \mathbb{R}^{m}$이 있다. 어떤 점 $x \in \mathbb{R}^{n}$에 대해서 $f$의 derivative $\text{D}f(x)$는 다음과 같이 $m \times n$ 행렬로 정의된다.
+
+$$
+\mathrm{D} f(x)=\frac{\partial f(x)}{\partial x^{\prime}}=\begin{bmatrix}
+\frac{\partial f_{1}(x)}{\partial x_{1}} & \ldots & \frac{\partial f_{1}(x)}{\partial x_{n}} \\
+\vdots & & \vdots \\
+\frac{\partial f_{m}(x)}{\partial x_{1}} & \cdots & \frac{\partial f_{m}(x)}{\partial x_{n}}
+\end{bmatrix}
+$$
+
+special case로 만약 vector function $f$ 대신 scalar function $\phi$라고 한다면 다음과 같이 정의된다.
+
+$$
+\mathrm{D} \phi(x)=\frac{\partial \phi(x)}{\partial x^{\prime}}=\begin{bmatrix}\frac{\partial \phi(x)}{\partial x_{1}}, \ldots, \frac{\partial \phi(x)}{\partial x_{n}}\end{bmatrix}
+$$
+
+위와 같이 어떤 함수를 transpose한 벡터로 편미분하는 방식은 계산되는 Jacobian Matrix의 형태를 직관적으로 유추할 수 있다. $m$차원 column방향의 vector function을 $n$차원 row방향으로 미분하면 $m \times n$ Jacobian Matrix가 된다. 다른 서적을 보면 gradient표현을 주로 사용한다. 그러나 gradient의 경우 vector와 scalar function에 대한 표현은 문제없지만 matrix에 대한 derivative표현은 문제가 있다.  
+
+만약 어떤 행렬 $X$와 함수 $F(X)$가 있을 때, 어떻게 $F(X)$의 differential을 계산해야할까? 그리고  $\mathrm{d} \text{ vec}F(X)=A(X)\mathrm{d} \text{ vec} X$ 일때 여기서 $\mathrm{D}F(X)=A(X)$를 어떻게 정의하고 구해야할까?
+
+이것들에 대해서 이번 챕터에서는 다룬다.
+
+# CLASSIFICATION
+
+이제 $scalar$ function들은 $\phi$, $vector$ function들은  $f$, $matrix$ functions는 $F$라 정의하자. 그리고 $one$ real variable를 $\xi$, $vector$는 $x$, $matrix$를 $X$라 정의하자.
+
+
+|  | Scalar <br> variable | Vector <br> variable | Matrix <br> variable |
+| :--- | :---: | :---: | :---: |
+| Scalar function | $\phi(\xi)$ | $\phi(x)$ | $\phi(X)$ |
+| Vector function | $f(\xi)$ | $f(x)$ | $f(X)$ |
+| Matrix function | $F(\xi)$ | $F(x)$ | $F(X)$ |
+
+
+<!-- 다음은 예제이다.
+$$
+\begin{array}{lll}
+\phi(\xi) & : & \xi^{2} \\
+\phi(x) & : & a^{\prime} x, x^{\prime} A x \\
+\phi(X) & : & a^{\prime} X b, \operatorname{tr} X^{\prime} X,|X|, \lambda(X) \quad \text { (eigenvalue) } \\
+f(\xi) & : & \begin{bmatrix}\xi, \xi^{2}\end{bmatrix}^{\prime} \\
+f(x) & : A x \\
+f(X) & : & X a, u(X) \quad \text { (eigenvector) } \\
+F(\xi) & : & \begin{bmatrix}\begin{array}{cc}
+1 & \xi \\
+\xi & \xi^{2}
+\end{array}\end{bmatrix} \\
+F(x) & : & x x^{\prime} \\
+F(X) & : & A X B, X^{2}, X^{+} .
+\end{array}
+$$ -->
+
+# DERISATIVES
+
+어떤 책, 논문들에서는 Matrix에 대한 Derivative를 잘못된 표현식으로 정의한다(저자는 이런 것들은 사실상 정확한 Derivative가 아니며 Derisatives라고 조롱식으로 설명한다.). 예시로 F를 $scalar$ $\xi$로 편미분한 경우다. 
+
+$$
+\frac{\delta F(\xi)}{\delta \xi}=\begin{bmatrix}\begin{array}{ccc}
+\frac{\partial f_{11}(\xi)}{\partial \xi} & \cdots & \frac{\partial f_{1 p}(\xi)}{\partial \xi} \\
+\vdots & & \vdots \\
+\frac{\partial f_{m 1}(\xi)}{\partial \xi} & \cdots & \frac{\partial f_{m p}(\xi)}{\partial \xi}
+\end{array}\end{bmatrix}
+$$
+
+여기서 $\partial$이 아니라 $\delta$로 쓴 이유는 이러한 미분방식이 올바른 derivative의 정의와 빗나가기 때문이며, partial derivative자체는 맞지만 행렬의 순서와 정렬에 대한 정의가 잘못되었다.
+
+$$
+\frac{\delta F(X)}{\delta X}=\begin{bmatrix}\begin{array}{ccc}
+\frac{\delta F(X)}{\delta x_{11}} & \ldots & \frac{\delta F(X)}{\delta x_{1 q}} \\
+\vdots & & \vdots \\
+\frac{\delta F(X)}{\delta x_{n 1}} & \cdots & \frac{\delta F(X)}{\delta x_{n q}}
+\end{array}\end{bmatrix}
+$$
+
+$$
+\frac{\delta F(X)}{\delta X^{\prime}}=\begin{bmatrix}\begin{array}{ccc}
+\frac{\delta F(X)}{\delta x_{11}} & \ldots & \frac{\delta F(X)}{\delta x_{n 1}} \\
+\vdots & & \vdots \\
+\frac{\delta F(X)}{\delta x_{1 q}} & \ldots & \frac{\delta F(X)}{\delta x_{n q}}
+\end{array}\end{bmatrix}
+$$
+
+따라서 위와 같은 정의도 잘못된 방식의 derivative계산이다. 

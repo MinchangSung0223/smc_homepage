@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Notes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Portfolio.</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="study.html" class="active">Study</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="container" style="padding-top: 120px;">
+            <!-- List View -->
+            <div id="listView">
+                <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem;">
+                    <div>
+                        <h1>Study Notes</h1>
+                        <p style="color: #94a3b8; margin-bottom: 0;">배운 내용을 정리하고 공유하는 공간입니다.</p>
+                    </div>
+                    <button id="writeBtn" class="btn">+ Write Note</button>
+                </div>
+
+                <div id="notesGrid" class="grid">
+                    <!-- Notes will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Detail View -->
+            <div id="detailView" style="display: none;">
+                <div style="margin-bottom: 2rem; display: flex; gap: 0.5rem;">
+                    <button id="backBtn" class="btn">← Back to List</button>
+                    <button id="editPostBtn" class="btn"
+                        style="background: linear-gradient(45deg, #3b82f6, #2563eb);">Edit Post</button>
+                    <button id="deletePostBtn" class="btn"
+                        style="background: linear-gradient(45deg, #ef4444, #dc2626);">Delete Post</button>
+                </div>
+                <article id="postContent" class="markdown-body"
+                    style="background: var(--glass-bg); padding: 3rem; border-radius: 16px; border: 1px solid var(--glass-border);">
+                    <!-- Content will be rendered here -->
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- Write/Edit Modal -->
+    <div id="noteModal" class="modal">
+        <div class="modal-content" style="max-width: 800px;">
+            <span class="close-modal">&times;</span>
+            <h2>New Study Note</h2>
+            <form id="noteForm">
+                <div class="form-group">
+                    <label for="noteTitle">Title</label>
+                    <input type="text" id="noteTitle" required placeholder="e.g. Kalman Filter">
+                </div>
+                <div class="form-group">
+                    <label for="noteTag">Tag</label>
+                    <input type="text" id="noteTag" required placeholder="e.g. Sensor">
+                </div>
+                <div class="form-group">
+                    <label for="noteSummary">Summary</label>
+                    <input type="text" id="noteSummary" placeholder="Brief summary...">
+                </div>
+                <div class="form-group">
+                    <label for="noteContent">Content (Markdown & LaTeX supported)</label>
+                    <textarea id="noteContent" required placeholder="# Header&#10;$$ E = mc^2 $$" rows="15"
+                        style="font-family: monospace;"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="notePassword">Password</label>
+                    <input type="password" id="notePassword" required placeholder="Enter password">
+                </div>
+                <button type="submit" class="btn" style="width: 100%; margin-top: 1rem;">게시</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
