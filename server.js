@@ -48,6 +48,11 @@ function getNextId(posts) {
     return Math.max(...posts.map(p => p.id)) + 1;
 }
 
+// Serve index.html for root path
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 // GET all posts
 app.get('/api/posts', (req, res) => {
     try {
