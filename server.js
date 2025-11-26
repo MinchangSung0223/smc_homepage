@@ -53,6 +53,19 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+// Serve static files explicitly
+app.get('/style.css', (req, res) => {
+    res.sendFile(path.join(__dirname, 'style.css'));
+});
+
+app.get('/script.js', (req, res) => {
+    res.sendFile(path.join(__dirname, 'script.js'));
+});
+
+app.get('/posts.json', (req, res) => {
+    res.sendFile(path.join(__dirname, 'posts.json'));
+});
+
 // GET all posts
 app.get('/api/posts', (req, res) => {
     try {
